@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cartoon StoryScape – GSAP + Lottie + ScrollTrigger</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="sky-glow"></div>
+
+    <header class="hero section" id="top">
+      <div class="hero__copy">
+        <p class="kicker">Interactive Story Lab for Kids</p>
+        <button id="soundToggle" class="btn">🔊 Enable Sound FX</button>
+      </div>
+      <div class="hero__lottie">
+        <div id="heroLottie" class="lottie-box" aria-label="Hero lottie animation"></div>
+      </div>
+    </header>
+
+    <main>
+      <section class="section" id="storyOptions">
+        <h2>Story Concepts (Choose Any Adventure)</h2>
+        <p class="section__intro">
+          Several immersive options blending cartoon-style visuals with short-story depth.
+        </p>
+
+        <div class="cards">
+          <article class="card" data-sound="chime" data-scene="lion">
+            <h3>1) The Lion King's Moonlight Promise</h3>
+            <p>
+              Simba-like cub crosses glowing savannah trails. Fireflies form memories,
+              while choices unlock courage scenes and friendship endings.
+            </p>
+            <button class="card-btn">✨ Trigger Courage Burst</button>
+          </article>
+
+          <article class="card" data-sound="sparkle" data-scene="frozen">
+            <h3>2) Frozen's Northern Lights Quest</h3>
+            <p>
+              Snow spirits dance with aurora ribbons. Kids help Elsa-like heroine
+              shape ice bridges by dragging snowflakes across the screen.
+            </p>
+            <button class="card-btn">❄️ Cast Ice Bridge</button>
+          </article>
+
+          <article class="card" data-sound="boop" data-scene="toy">
+            <h3>3) Toy Room Time Machine</h3>
+            <p>
+              Toys wake at midnight, assemble a cardboard rocket, and leap through
+              story worlds teaching teamwork, humor, and bravery.
+            </p>
+            <button class="card-btn">🚀 Launch Play Rocket</button>
+          </article>
+
+          <article class="card" data-sound="chime" data-scene="jungle">
+            <h3>4) Jungle Book River Riddles</h3>
+            <p>
+              Animal friends guide kids through musical riddles. Each right answer
+              animates vines, drums, and dancing silhouettes.
+            </p>
+            <button class="card-btn">🥁 Solve a Riddle</button>
+          </article>
+
+          <article class="card" data-sound="sparkle" data-scene="lantern">
+            <h3>5) The Little Match Girl – Hopeful Reimagining</h3>
+            <p>
+              Warm lantern spirits appear with every match-light moment. Kids build a
+              gentle ending by sharing kindness tokens in interactive scenes.
+            </p>
+            <button class="card-btn">🕯️ Light a Story Lantern</button>
+          </article>
+
+          <article class="card" data-sound="boop" data-scene="alice">
+            <h3>6) Alice in Wonder Forest</h3>
+            <p>
+              Clock rabbits and talking flowers guide nonlinear chapters. Scroll opens
+              portals; clicks shift perspective and puzzle outcomes.
+            </p>
+            <button class="card-btn">🫖 Open a Portal</button>
+          </article>
+        </div>
+      </section>
+
+      <section class="section story-timeline" id="immersiveScene">
+        <h2>Immersive Scene Builder</h2>
+        <p class="section__intro">
+          This sequence demonstrates scroll-synced Lottie timelines, layered parallax,
+          and reactive sound to simulate cinematic storytelling.
+        </p>
+
+        <div class="scene" id="sceneRoot">
+          <div class="parallax layer-back"></div>
+          <div class="parallax layer-mid"></div>
+          <div class="parallax layer-front"></div>
+          <div id="sceneLottie" class="lottie-box scene-lottie"></div>
+          <div class="scene-actors" id="sceneActors">
+            <span class="actor actor-a" id="actorA">🦁</span>
+            <span class="actor actor-b" id="actorB">🦜</span>
+            <span class="actor actor-c" id="actorC">✨</span>
+          </div>
+          <div class="scene-title" id="sceneTitle">The Lion King's Moonlight Promise</div>
+          <div class="scene-caption">🌟 Scroll deeper to reveal the next chapter...</div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="section footer">
+      <p>Made for magical, safe, kid-friendly storytelling prototypes.</p>
+      <a href="#top">Back to top ↑</a>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.2/lottie.min.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
