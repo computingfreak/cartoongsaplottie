@@ -1,5 +1,3 @@
-gsap.registerPlugin(ScrollTrigger);
-
 const heroLottie = lottie.loadAnimation({
   container: document.getElementById("heroLottie"),
   renderer: "svg",
@@ -39,15 +37,6 @@ const scenes = {
     front: "radial-gradient(circle at 50% 90%, rgba(255, 230, 161, 0.26), transparent 35%)",
     actors: ["🧸", "🚀", "🤖"],
   },
-  jungle: {
-    title: "Jungle Book River Riddles",
-    caption: "🌿 Drums echo and vines swirl as clues unlock the river path.",
-    lottie: "https://assets9.lottiefiles.com/packages/lf20_2ks3pjua.json",
-    back: "radial-gradient(circle at 30% 40%, rgba(114, 243, 164, 0.26), transparent 58%)",
-    mid: "radial-gradient(circle at 70% 55%, rgba(73, 197, 125, 0.3), transparent 48%)",
-    front: "radial-gradient(circle at 50% 90%, rgba(204, 255, 145, 0.22), transparent 35%)",
-    actors: ["🐻", "🐒", "🌿"],
-  },
   lantern: {
     title: "The Little Match Girl – Hopeful Reimagining",
     caption: "🕯️ Lantern spirits rise and kindness lights the winter sky.",
@@ -57,19 +46,9 @@ const scenes = {
     front: "radial-gradient(circle at 50% 90%, rgba(255, 222, 133, 0.28), transparent 35%)",
     actors: ["🧒", "🕯️", "🏮"],
   },
-  alice: {
-    title: "Alice in Wonder Forest",
-    caption: "🫖 Portals bloom and clocks bend as perspective flips by chapter.",
-    lottie: "https://assets10.lottiefiles.com/packages/lf20_hl5nqf8w.json",
-    back: "radial-gradient(circle at 26% 34%, rgba(163, 143, 255, 0.28), transparent 58%)",
-    mid: "radial-gradient(circle at 70% 55%, rgba(255, 135, 224, 0.32), transparent 48%)",
-    front: "radial-gradient(circle at 50% 90%, rgba(255, 208, 236, 0.24), transparent 35%)",
-    actors: ["👧", "🐇", "🫖"],
-  },
 };
 
 let sceneLottie;
-let lottieFrameTween;
 let actorLoop;
 
 const soundToggleBtn = document.getElementById("soundToggle");
@@ -116,17 +95,7 @@ gsap.from(".hero__copy > *", {
 // Story cards interactions + micro animations
 const cards = gsap.utils.toArray(".card");
 cards.forEach((card, i) => {
-  gsap.from(card, {
-    scrollTrigger: {
-      trigger: card,
-      start: "top 85%",
-    },
-    y: 35,
-    opacity: 0,
-    duration: 0.65,
-    delay: i * 0.05,
-    ease: "power2.out",
-  });
+  gsap.from(card, { y: 25, opacity: 0, duration: 0.55, delay: i * 0.06, ease: "power2.out" });
 
   card.addEventListener("mousemove", (e) => {
     const rect = card.getBoundingClientRect();
@@ -176,23 +145,6 @@ function animateActors() {
     .to(".actor-c", { y: 20, scale: 1.18, duration: 1.8, ease: "sine.inOut" }, 0.1);
 }
 
-function attachLottieScroll(animation) {
-  const totalFrames = animation.totalFrames || 180;
-  const playhead = { frame: 0 };
-  if (lottieFrameTween) lottieFrameTween.kill();
-  lottieFrameTween = gsap.to(playhead, {
-    frame: totalFrames - 1,
-    ease: "none",
-    scrollTrigger: {
-      trigger: "#immersiveScene",
-      start: "top top",
-      end: "+=1200",
-      scrub: true,
-    },
-    onUpdate: () => animation.goToAndStop(playhead.frame, true),
-  });
-}
-
 function loadSceneLottie(path) {
   if (sceneLottie) sceneLottie.destroy();
   sceneEl.innerHTML = "";
@@ -204,7 +156,9 @@ function loadSceneLottie(path) {
     path,
   });
 
-  sceneLottie.addEventListener("DOMLoaded", () => attachLottieScroll(sceneLottie));
+  sceneLottie.addEventListener("DOMLoaded", () => {
+    sceneLottie.play();
+  });
   sceneLottie.addEventListener("data_failed", () => {
     caption.textContent = "✨ Story visuals are loading slowly. Scroll for parallax chapters meanwhile.";
   });
@@ -230,21 +184,16 @@ function setActiveScene(sceneKey) {
 }
 
 const sceneTl = gsap.timeline({
-  scrollTrigger: {
-    trigger: "#immersiveScene",
-    start: "top top",
-    end: "+=1200",
-    scrub: true,
-    pin: true,
-  },
+  repeat: -1,
+  yoyo: true,
 });
 
 sceneTl
-  .to(lBack, { yPercent: -8, scale: 1.08, ease: "none" }, 0)
-  .to(lMid, { yPercent: -18, scale: 1.15, ease: "none" }, 0)
-  .to(lFront, { yPercent: -30, scale: 1.2, ease: "none" }, 0)
-  .to(caption, { textShadow: "0 0 20px rgba(255,206,84,0.8)", opacity: 1 }, 0.2)
-  .to(scene, { filter: "saturate(1.35)", ease: "none" }, 0.3);
+  .to(lBack, { yPercent: -4, scale: 1.04, duration: 5, ease: "sine.inOut" }, 0)
+  .to(lMid, { yPercent: -8, scale: 1.08, duration: 4.4, ease: "sine.inOut" }, 0)
+  .to(lFront, { yPercent: -12, scale: 1.12, duration: 3.8, ease: "sine.inOut" }, 0)
+  .to(caption, { textShadow: "0 0 20px rgba(255,206,84,0.8)", opacity: 1, duration: 3 }, 0.2)
+  .to(scene, { filter: "saturate(1.35)", duration: 4, ease: "sine.inOut" }, 0.3);
 
 setActiveScene("lion");
 

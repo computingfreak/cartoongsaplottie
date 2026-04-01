@@ -90,7 +90,7 @@ h2 {
 .cards {
   margin-top: 1.5rem;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 1rem;
 }
 
@@ -109,14 +109,13 @@ h2 {
   box-shadow: 0 10px 30px rgba(255, 206, 84, 0.25);
 }
 
-.story-timeline {
-  min-height: 170vh;
+.story-stage {
+  padding-top: 1.5rem;
 }
 
 .scene {
-  position: sticky;
-  top: 1rem;
-  min-height: 78vh;
+  position: relative;
+  min-height: 72vh;
   border-radius: 1.2rem;
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.2);
