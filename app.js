@@ -19,6 +19,7 @@ const scenes = {
     back: "radial-gradient(circle at 30% 40%, rgba(250, 190, 95, 0.25), transparent 58%)",
     mid: "radial-gradient(circle at 70% 55%, rgba(255, 155, 94, 0.3), transparent 50%)",
     front: "radial-gradient(circle at 50% 90%, rgba(255, 234, 147, 0.3), transparent 35%)",
+    actors: ["🦁", "🦜", "✨"],
   },
   frozen: {
     title: "Frozen's Northern Lights Quest",
@@ -27,6 +28,7 @@ const scenes = {
     back: "radial-gradient(circle at 25% 35%, rgba(122, 220, 255, 0.3), transparent 58%)",
     mid: "radial-gradient(circle at 70% 50%, rgba(184, 138, 255, 0.32), transparent 48%)",
     front: "radial-gradient(circle at 50% 90%, rgba(214, 244, 255, 0.26), transparent 35%)",
+    actors: ["👸", "⛄", "❄️"],
   },
   toy: {
     title: "Toy Room Time Machine",
@@ -35,6 +37,7 @@ const scenes = {
     back: "radial-gradient(circle at 20% 30%, rgba(255, 176, 106, 0.26), transparent 58%)",
     mid: "radial-gradient(circle at 76% 48%, rgba(255, 107, 129, 0.3), transparent 52%)",
     front: "radial-gradient(circle at 50% 90%, rgba(255, 230, 161, 0.26), transparent 35%)",
+    actors: ["🧸", "🚀", "🤖"],
   },
   jungle: {
     title: "Jungle Book River Riddles",
@@ -43,6 +46,7 @@ const scenes = {
     back: "radial-gradient(circle at 30% 40%, rgba(114, 243, 164, 0.26), transparent 58%)",
     mid: "radial-gradient(circle at 70% 55%, rgba(73, 197, 125, 0.3), transparent 48%)",
     front: "radial-gradient(circle at 50% 90%, rgba(204, 255, 145, 0.22), transparent 35%)",
+    actors: ["🐻", "🐒", "🌿"],
   },
   lantern: {
     title: "The Little Match Girl – Hopeful Reimagining",
@@ -51,6 +55,7 @@ const scenes = {
     back: "radial-gradient(circle at 22% 38%, rgba(255, 184, 130, 0.28), transparent 58%)",
     mid: "radial-gradient(circle at 72% 54%, rgba(255, 124, 177, 0.3), transparent 50%)",
     front: "radial-gradient(circle at 50% 90%, rgba(255, 222, 133, 0.28), transparent 35%)",
+    actors: ["🧒", "🕯️", "🏮"],
   },
   alice: {
     title: "Alice in Wonder Forest",
@@ -59,11 +64,13 @@ const scenes = {
     back: "radial-gradient(circle at 26% 34%, rgba(163, 143, 255, 0.28), transparent 58%)",
     mid: "radial-gradient(circle at 70% 55%, rgba(255, 135, 224, 0.32), transparent 48%)",
     front: "radial-gradient(circle at 50% 90%, rgba(255, 208, 236, 0.24), transparent 35%)",
+    actors: ["👧", "🐇", "🫖"],
   },
 };
 
 let sceneLottie;
 let lottieFrameTween;
+let actorLoop;
 
 const soundToggleBtn = document.getElementById("soundToggle");
 let soundEnabled = false;
@@ -156,6 +163,18 @@ const lBack = document.querySelector(".layer-back");
 const lMid = document.querySelector(".layer-mid");
 const lFront = document.querySelector(".layer-front");
 const caption = document.querySelector(".scene-caption");
+const actorA = document.getElementById("actorA");
+const actorB = document.getElementById("actorB");
+const actorC = document.getElementById("actorC");
+
+function animateActors() {
+  if (actorLoop) actorLoop.kill();
+  actorLoop = gsap.timeline({ repeat: -1, yoyo: true });
+  actorLoop
+    .to(".actor-a", { y: -18, x: 16, rotate: 5, duration: 2.6, ease: "sine.inOut" }, 0)
+    .to(".actor-b", { y: -24, x: -12, rotate: -6, duration: 2.2, ease: "sine.inOut" }, 0.2)
+    .to(".actor-c", { y: 20, scale: 1.18, duration: 1.8, ease: "sine.inOut" }, 0.1);
+}
 
 function attachLottieScroll(animation) {
   const totalFrames = animation.totalFrames || 180;
@@ -197,9 +216,12 @@ function setActiveScene(sceneKey) {
 
   sceneTitle.textContent = active.title;
   caption.textContent = active.caption;
+  [actorA.textContent, actorB.textContent, actorC.textContent] = active.actors;
   gsap.to(lBack, { backgroundImage: active.back, duration: 0.45 });
   gsap.to(lMid, { backgroundImage: active.mid, duration: 0.45 });
   gsap.to(lFront, { backgroundImage: active.front, duration: 0.45 });
+  gsap.fromTo(".actor", { scale: 0.7, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.4, stagger: 0.08 });
+  animateActors();
   loadSceneLottie(active.lottie);
 
   cards.forEach((card) => {
