@@ -1,0 +1,170 @@
+:root {
+  --bg: #0f1030;
+  --bg2: #1a1b4b;
+  --card: rgba(255, 255, 255, 0.12);
+  --text: #f7f9ff;
+  --accent: #ffce54;
+  --pink: #ff7bc1;
+  --mint: #82ffd8;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Baloo 2", system-ui, sans-serif;
+  color: var(--text);
+  background: radial-gradient(circle at 20% 20%, #2a2b7a 0%, var(--bg) 60%, #0a0a1d 100%);
+  overflow-x: hidden;
+}
+
+.sky-glow {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(circle at 80% 10%, rgba(255, 123, 193, 0.3), transparent 40%),
+    radial-gradient(circle at 10% 60%, rgba(130, 255, 216, 0.2), transparent 45%);
+  z-index: -1;
+}
+
+.section {
+  width: min(1100px, 92vw);
+  margin: 0 auto;
+  padding: 4rem 0;
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  align-items: center;
+  gap: 2rem;
+  min-height: 90vh;
+}
+
+.kicker {
+  color: var(--mint);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+h1,
+h2,
+h3 {
+  margin-top: 0;
+  line-height: 1.1;
+}
+
+h1 {
+  font-size: clamp(2rem, 4vw, 3.6rem);
+}
+
+h2 {
+  font-size: clamp(1.6rem, 3vw, 2.5rem);
+}
+
+.btn,
+.card-btn {
+  border: 0;
+  border-radius: 999px;
+  padding: 0.75rem 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  background: linear-gradient(120deg, var(--accent), #ff9f43);
+  color: #1a1130;
+}
+
+.lottie-box {
+  width: 100%;
+  max-width: 440px;
+  aspect-ratio: 1 / 1;
+  margin-inline: auto;
+}
+
+.section__intro {
+  color: #d7dcff;
+  max-width: 70ch;
+}
+
+.cards {
+  margin-top: 1.5rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+}
+
+.card {
+  padding: 1rem;
+  border-radius: 1rem;
+  background: var(--card);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+  transform-origin: center;
+}
+
+.story-timeline {
+  min-height: 170vh;
+}
+
+.scene {
+  position: sticky;
+  top: 1rem;
+  min-height: 78vh;
+  border-radius: 1.2rem;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: linear-gradient(180deg, rgba(17, 19, 60, 0.9), rgba(10, 11, 35, 0.95));
+}
+
+.parallax {
+  position: absolute;
+  inset: 0;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.layer-back {
+  background-image: radial-gradient(circle at 30% 40%, rgba(130, 255, 216, 0.2), transparent 55%);
+}
+
+.layer-mid {
+  background-image: radial-gradient(circle at 70% 55%, rgba(255, 123, 193, 0.25), transparent 48%);
+}
+
+.layer-front {
+  background-image: radial-gradient(circle at 50% 88%, rgba(255, 206, 84, 0.22), transparent 35%);
+}
+
+.scene-lottie {
+  position: absolute;
+  inset: 8% 10% 12%;
+  max-width: 520px;
+}
+
+.scene-caption {
+  position: absolute;
+  left: 1rem;
+  bottom: 1rem;
+  font-size: 1.1rem;
+  background: rgba(10, 10, 34, 0.6);
+  padding: 0.6rem 0.8rem;
+  border-radius: 0.6rem;
+}
+
+.footer {
+  text-align: center;
+  color: #d0d5ff;
+}
+
+.footer a {
+  color: var(--mint);
+}
+
+@media (max-width: 860px) {
+  .hero {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+}
