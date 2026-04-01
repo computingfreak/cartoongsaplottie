@@ -104,6 +104,11 @@ h2 {
   transform-origin: center;
 }
 
+.card.active {
+  border-color: rgba(255, 206, 84, 0.8);
+  box-shadow: 0 10px 30px rgba(255, 206, 84, 0.25);
+}
+
 .story-timeline {
   min-height: 170vh;
 }
@@ -151,6 +156,17 @@ h2 {
   background: rgba(10, 10, 34, 0.6);
   padding: 0.6rem 0.8rem;
   border-radius: 0.6rem;
+}
+
+.scene-title {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  right: 1rem;
+  font-size: clamp(1.1rem, 2.4vw, 1.8rem);
+  font-weight: 800;
+  color: #fff3d2;
+  text-shadow: 0 6px 24px rgba(0, 0, 0, 0.4);
 }
 
 .footer {
